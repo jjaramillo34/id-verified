@@ -24,6 +24,14 @@ st.title("ID Analyzer")
 
 img_file_buffer = st.camera_input("Take a picture")
 
+CORE_API = st.secrets["CORE_API"]
+
+opciones = ["Cedula", "Pasaporte", "Licencia de Conducir"]
+st.sidebar.title("Opciones")
+st.sidebar.subheader("Tipo de Documento")
+st.sidebar.selectbox("Tipo de Documento", opciones)
+
+
 if img_file_buffer is not None:
     st.warning("Image uploaded")
     # Convert the file to an opencv image.
@@ -40,7 +48,7 @@ if img_file_buffer is not None:
     time.sleep(5)
 
     try:
-        coreapi = idanalyzer.CoreAPI("zIm3HxPwKYl7ELPU94oV4NdcOyTFQKmF", "US")
+        coreapi = idanalyzer.CoreAPI(CORE_API, "US")
         # Initialize Core API with your api key and region (US/EU)
         # Raise exceptions for API level errors
         coreapi.throw_api_exception(True)
