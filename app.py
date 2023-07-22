@@ -1,7 +1,11 @@
 import idanalyzer
+import streamlit as st
+
+CORE_API = st.secrets["CORE_API"]
 
 try:
     # Initialize Core API with your api key and region (US/EU)
+    coreapi = idanalyzer.CoreAPI(CORE_API, "US")
 
     # Raise exceptions for API level errors
     coreapi.throw_api_exception(True)
